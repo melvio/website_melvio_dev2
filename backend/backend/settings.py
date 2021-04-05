@@ -25,13 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY: str = os.getenv("SECRET_KEY")
 
-DJANGO_ALLOWED_HOSTS: str = os.getenv("ALLOWED_HOSTS")
-if not DJANGO_ALLOWED_HOSTS:
+ALLOWED_HOSTS: str = os.getenv("ALLOWED_HOSTS")
+if not ALLOWED_HOSTS:
     ALLOWED_HOSTS: list = []
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
 else:
-    ALLOWED_HOSTS: list = DJANGO_ALLOWED_HOSTS.split(" ")
+    ALLOWED_HOSTS: list = ALLOWED_HOSTS.split()
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
 
