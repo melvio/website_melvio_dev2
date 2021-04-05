@@ -23,15 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY: str = os.getenv("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-if not os.getenv("ALLOWED_HOST"):
-    ALLOWED_HOSTS = []
+DJANGO_ALLOWED_HOSTS: str = os.getenv("ALLOWED_HOSTS")
+if not DJANGO_ALLOWED_HOSTS:
+    ALLOWED_HOSTS: list = []
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
 else:
-    ALLOWED_HOSTS = os.getenv("ALLOWED_HOST").split()
+    ALLOWED_HOSTS: list = DJANGO_ALLOWED_HOSTS.split(" ")
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = False
 
 # Application definition
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -56,20 +59,19 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'backend.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+        ],
     },
+},
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
