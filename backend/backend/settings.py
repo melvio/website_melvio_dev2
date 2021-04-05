@@ -25,14 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY: str = os.getenv("SECRET_KEY")
 
-ALLOWED_HOSTS: str = os.getenv("ALLOWED_HOSTS")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
 if not ALLOWED_HOSTS:
-    ALLOWED_HOSTS: list = []
+    ALLOWED_HOSTS = []
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
 else:
-    ALLOWED_HOSTS: list = ALLOWED_HOSTS.split()
-    # SECURITY WARNING: don't run with debug turned on in production!
+    ALLOWED_HOSTS = ALLOWED_HOSTS.split()
     DEBUG = False
 
 CORS_ORIGIN_ALLOW_ALL = True
