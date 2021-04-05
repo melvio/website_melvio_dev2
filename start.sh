@@ -6,7 +6,7 @@ cd || exit 1
 sudo apt-get update -y
 sudo apt-get upgrade -y
 
-sudo apt-get install -y python3-dev nginx python3-venv uwsgi-emperor
+sudo apt-get install -y python3-dev nginx python3-venv uwsgi-emperor uwsgi-dev uwsgi-plugin-python3
 
 cd ~/webapp/backend || exit 1
 python3 -m venv venv
