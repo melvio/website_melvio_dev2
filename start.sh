@@ -1,6 +1,7 @@
+#!/usr/bin/env bash
 cd || exit 1
 
-git clone https://github.com/melvio/website_melvio_dev2.git webapp
+#git clone https://github.com/melvio/website_melvio_dev2.git webapp
 
 sudo apt-get update
 sudo apt-get upgrade
